@@ -1,30 +1,35 @@
+#include <stdlib.h>
+#include <time.h>
 #include <stdio.h>
-
 /**
- * main - Writes 00 - 99
- * @void: Empty parameter list for main.
+ * main - Entry point
  *
- * Description: Writes number 00-99
- *
- * Return: 0 for success
-*/
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
-	int i, j;
+	int i;
+	int j;
 
-	for (i = 48; i <= 57; i++)
+	for (i = '0'; i <= '9'; i++)
 	{
-		for (j = 48; j <= 57; j++)
+		for (j = '0'; j <= '9'; j++)
 		{
+			if (i < j)
+			{
 			putchar(i);
 			putchar(j);
-			if (i + j < 114)
+			if (i < '9' || j < '9')
 			{
 				putchar(44);
 				putchar(32);
 			}
+			else
+			{
+			putchar('\n');
+			}
+			}
 		}
 	}
-	putchar(10);
 	return (0);
 }
