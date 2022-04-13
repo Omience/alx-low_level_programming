@@ -1,64 +1,47 @@
-#include <unistd.h>
 #include "main.h"
 
 /**
- * multiplier - prints the timestable for a given int using _putchar
- * @num: the integer timestable to be printed
- * Return: void
+ * print_times_table - prints the n times table, starting with 0
+ * @n: number of the times table
  */
-void multiplier(int num)
-{
-	int a, b, result;
-
-	a = 0;
-	while (a <= num)
-	{
-		b = 0;
-		while (b <= num)
-		{
-			result = a * b;
-			if (b == 0)
-				_putchar(result + '0');
-			else if (result >= 0 && result < 10)
-			{
-				_putchar(',');
-				_putchar(' ');
-				_putchar(' ');
-				_putchar(' ');
-				_putchar(result + '0');
-			}
-			else if (result > 9 && result < 100)
-			{
-				_putchar(',');
-				_putchar(' ');
-				_putchar(' ');
-				_putchar((result / 10) + '0');
-				_putchar((result % 10) + '0');
-			}
-			else
-			{
-				_putchar(',');
-				_putchar(' ');
-				_putchar((result / 100) + '0');
-				_putchar(((result / 10) % 10) + '0');
-				_putchar((result % 10) + '0');
-			}
-			b = b + 1;
-		}
-		_putchar('\n');
-		a = a + 1;
-	}
-}
-
-/**
- * print_times_table - prints the timetables for a given number
- * @n: number of timestable to be printed
- * Return: void
- */
-
 void print_times_table(int n)
 {
+	int i, j, k;
 
 	if (n >= 0 && n <= 15)
-		multiplier(n);
+	{
+		for (i = 0; i <= n; i++)
+		{
+			for (j = 0; j <= n; j++)
+			{
+				k = j * i;
+				if (j == 0)
+				{
+					_putchar(k + '0');
+				} else if (k < 10 && j != 0)
+				{
+					_putchar(',');
+					_putchar(' ');
+					_putchar(' ');
+					_putchar(' ');
+					_putchar(k + '0');
+				} else if (k >= 10 && k < 100)
+				{
+					_putchar(',');
+					_putchar(' ');
+					_putchar(' ');
+					_putchar((k / 10) + '0');
+					_putchar((k % 10) + '0');
+				} else if (k >= 100)
+				{
+					_putchar(',');
+					_putchar(' ');
+					_putchar((k / 100) + '0');
+					_putchar(((k / 10) % 10) + '0');
+					_putchar((k % 10) + '0');
+				}
+			}
+			_putchar('\n');
+		}
+	}
 }
