@@ -1,18 +1,19 @@
 #include "lists.h"
 
 /**
- * free_list - free linked list
- * @head: linked list
+ * free_list - frees a list
+ * @head: head of the linked list.
+ * Return: no return.
  */
 
 void free_list(list_t *head)
 {
-	while (head != NULL)
+	list_t *current;
+
+	while ((current = head) != NULL)
 	{
-		free(head->str);
-		free(head);
 		head = head->next;
+		free(current->str);
+		free(current);
 	}
 }
-© 2022 GitHub, Inc.
-Terms
