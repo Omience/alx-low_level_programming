@@ -1,41 +1,53 @@
 #include "lists.h"
 
 /**
- * add_node_end - adds a new node at the end
- * of a list_t list.
- * @head: head of the linked list.
- * @str: string to store in the list.
- * Return: address of the head.
+ * _strlen - find string length
+ * @str: string
+ * Return: length
  */
+int _strlen(const char *str)
+{
+	int i;
 
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+/**
+ * add_node_end - add node to end of linked list
+ * @head: linked list
+ * @str: data for new node
+ * Return: address of new element, or NULL if failed
+ */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new, *temp;
-	size_t nchar;
+	list_t *new_node, *temp;
 
-	new = malloc(sizeof(list_t));
-	if (new == NULL)
+	if (str == NULL)
+		return (NULL);
+	if (strdup(str) == NULL)
 		return (NULL);
 
-	new->str = strdup(str);
+	new_node = malloc(sizeof(list_t));
+	if (new_node == NULL)
+		return (NULL);
 
-	for (nchar = 0; str[nchar]; nchar++)
-		;
+	new_node->str = strdup(str);
+	new_node->len = _strlen(str);
+	new_node->next = NULL;
 
-	new->len = nchar;
-	new->next = NULL;
-	temp = *head;
-
-	if (temp == NULL)
-	{
-		*head = new;
-	}
+	if (*head == NULL)
+		*head = new_node;
 	else
 	{
+		temp = *head;
+
 		while (temp->next != NULL)
 			temp = temp->next;
-		temp->next = new;
+		temp->next = new_node;
 	}
 
-	return (*head);
+	return (new_node);
 }
