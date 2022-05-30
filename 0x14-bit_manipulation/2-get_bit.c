@@ -1,16 +1,31 @@
 #include "holberton.h"
 
 /**
- * get_bit - gets bit on index `index`
+ * print_binary - prints decimal to binary
+ * Description: first, finds the biggest exponent for 2, then go down
+ * to find the smaller values
  * @n: decimal number
- * @index: index of the bit
- * Return: the bit found
  */
 
-int get_bit(unsigned long int n, unsigned int index)
+void print_binary(unsigned long int n)
 {
-	if (index >= sizeof(n) * BYTE_LENGHT)
-		return (-1);
+int i, k, andmask, change;
+int firstOne = 0;
+unsigned long int max = 1;
 
-	return ((n >> index) & 1);
+for (max = 0, change = 0; max <=n; max = max << 1, change++)
+
+for (i = change; i >= 0 ; i--)
+{
+andmask = 1 << i;
+k = n & andmask;
+
+if (k != 0 && firstOne == 0)
+	firstOne = 1;
+
+if (firstOne != 0)
+	k == 0 ? _putchar('0') : _putchar('1');
+}
+if (firstOne == 0)
+	_putchar('0');
 }

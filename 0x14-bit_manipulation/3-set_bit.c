@@ -1,18 +1,23 @@
+#include <stdio.h>
 #include "holberton.h"
 
 /**
- * set_bit - gets bit on index `index`
- * @n: decimal number
- * @index: index of the bit
- * Return: 1 (success) or -1(faillure)
+ * main - check the code for Holberton School students.
+ *
+ * Return: Always 0.
  */
-
-int set_bit(unsigned long int *n, unsigned int index)
+int main(void)
 {
-	if (index >= (sizeof(unsigned long int) * BYTE_LENGHT))
-		return (-1);
+    unsigned long int n;
 
-	*n ^= (1 << index);
-
-	return (1);
+    n = 1024;
+    set_bit(&n, 5);
+    printf("%lu\n", n);
+    n = 0;
+    set_bit(&n, 10);
+    printf("%lu\n", n);
+    n = 98;
+    set_bit(&n, 0);
+    printf("%lu\n", n);
+    return (0);
 }
